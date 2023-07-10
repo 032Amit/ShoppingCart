@@ -19,7 +19,9 @@ const ProductCard = (props: IProps) => {
   const dispatch = useDispatch();
 
   return (
-    <View key={item.id} style={styles.productContainer}>
+    <View
+      key={from === 'Home' ? item.id : `${item.id}${item.name}`}
+      style={styles.productContainer}>
       <Image source={{uri: item.img}} style={styles.imgStyl} />
       <View style={styles.container}>
         <Text style={styles.nameTxt}>{item.name.substring(0, 20) + '...'}</Text>

@@ -1,11 +1,13 @@
 import React from 'react';
-import {FlatList, ListRenderItem} from 'react-native';
+import {Text, FlatList, ListRenderItem, StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
 import Header from '../components/Header';
 
 import {IRootState} from '../redux/store';
 import {IProduct} from '../models/product.model';
 import ProductCard from '../components/ProductCard';
+import CartFooter from '../components/CartFooter';
+import BlankListMsg from '../components/BlankListMsg';
 
 const Cart = () => {
   const cartItems = useSelector((state: IRootState) => state.cart);
@@ -18,8 +20,13 @@ const Cart = () => {
 
   return (
     <>
-      <Header title={'PRETTYLITTLETHING'} />
-      <FlatList data={cartItems} renderItem={renderProductList} />
+      {/* <Header title={'PRETTYLITTLETHING'} /> */}
+      <FlatList
+        data={cartItems}
+        renderItem={renderProductList}
+        ListEmptyComponent={<BlankListMsg message="No Items in Your Cart" />}
+      />
+      <CartFooter from={'Cart'} />
     </>
   );
 };
